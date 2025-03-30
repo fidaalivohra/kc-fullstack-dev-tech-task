@@ -11,47 +11,55 @@ function loadCategories() {
         .then(response => response.json())
         .then(data => {
             const categoryList = document.getElementById("category-list");
+            const categoryTitle = document.getElementById("category-title"); // Title Element
+            let selectedCategory = null; // Track selected category
+
             categoryList.innerHTML = "";
 
-            // Function to calculate total courses including child categories
             function calculateTotalCourses(category) {
-                let totalCourses = Number(category.course_count) || 0; // Convert to number
-                
+                let totalCourses = Number(category.course_count) || 0;
                 if (category.children && category.children.length) {
                     category.children.forEach(child => {
                         totalCourses += calculateTotalCourses(child);
                     });
                 }
-                
-                category.total_course_count = totalCourses; // Store the computed total
+                category.total_course_count = totalCourses;
                 return totalCourses;
             }
 
-            // First, update all categories with total course counts
             data.forEach(category => calculateTotalCourses(category));
 
-            // Render the categories with the updated course counts
             function renderCategory(category, parentElement) {
                 let li = document.createElement("li");
-                li.innerHTML = `<p>${category.name} (${category.total_course_count})</p>`;
+                let p = document.createElement("p");
+            
+                p.textContent = `${category.name} (${category.total_course_count})`;
                 li.dataset.categoryId = category.id;
                 li.classList.add(category.parent_id ? "child-category" : "parent-category");
-
-                li.addEventListener("click", (event) => {
+            
+                p.addEventListener("click", (event) => {
                     event.stopPropagation();
+
+                    document.querySelectorAll(".selected-category").forEach(el => el.classList.remove("selected-category"));
+
+                    p.classList.add("selected-category");
+                    
+                    categoryTitle.textContent = `${category.name}`;
+
                     loadCourses(category.id);
                 });
-
+            
+                li.appendChild(p);
                 parentElement.appendChild(li);
-
+            
                 if (category.children && category.children.length) {
                     let ul = document.createElement("ul");
                     ul.classList.add("nested-category");
                     li.appendChild(ul);
-
+            
                     category.children.forEach(child => renderCategory(child, ul));
                 }
-            }
+            }            
 
             data.forEach(category => renderCategory(category, categoryList));
         })

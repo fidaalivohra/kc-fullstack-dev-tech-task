@@ -104,4 +104,10 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+.selected-category {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
   
