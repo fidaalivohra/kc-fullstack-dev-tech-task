@@ -10,15 +10,9 @@ CREATE TABLE `courses` (
     FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE
 );
 
-INSERT INTO `courses` (`name`, `description`, `image_preview`, `category_id`)
-VALUES ('PHP', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('MySQL', '', NULL, 'c4064741-d191-49c5-b141-7943d063cfc3'),
-       ('JavaScript', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('HTML', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('CSS', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('Java', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('C++', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6'),
-       ('Python', '', NULL, '91aad7bb-5885-4a25-bbdc-046dd4b2a9e6');
+INSERT INTO `courses` (`id`, `name`, `description`, `image_preview`, `category_id`, `created_at`, `updated_at`) VALUES
+('fc569093-0d62-11f0-8760-cc47405f3f4f', 'Full Stack Development (Laravel,PHP,MySQL)', 'dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd ', 'https://cdn0.knowledgecity.com/opencontent/courses/previews/L373349028/800--v112240.jpg', '9b908c1f-0d62-11f0-8760-cc47405f3f4f', '2025-03-30 12:32:03', '2025-03-30 14:16:07'),
+('fc569093-0d62-11f0-8760-cc42505f3f4f', 'Full Stack Development (Laravel,PHP,MySQL)', 'dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd dfd dsds sf sdf sdf sd ', 'https://cdn0.knowledgecity.com/opencontent/courses/previews/L373349028/800--v112240.jpg', '9b8ff6bb-0d62-11f0-8760-cc47405f3f4f', '2025-03-30 12:32:03', '2025-03-30 15:32:46');
 
 -- down
 DROP TABLE `courses`;

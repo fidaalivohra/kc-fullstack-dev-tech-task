@@ -9,9 +9,11 @@ CREATE TABLE `categories` (
     FOREIGN KEY (`parent_id`) REFERENCES `categories`(`id`) ON DELETE CASCADE
 );
 
-INSERT INTO `categories` (`id`, `name`)
-VALUES ('91aad7bb-5885-4a25-bbdc-046dd4b2a9e6', 'Technology', '', NULL),
-       ('c4064741-d191-49c5-b141-7943d063cfc3', 'MySQL', '', NULL);
+INSERT INTO `categories` (`id`, `name`, `description`, `parent_id`, `created_at`, `updated_at`) VALUES
+('2daf04e1-0d61-11f0-8760-cc47405f3f4f', 'Technology', NULL, NULL, '2025-03-30 12:19:07', '2025-03-30 12:19:07'),
+('9b8ff6bb-0d62-11f0-8760-cc47405f3f4f', 'Software Development', NULL, '2daf04e1-0d61-11f0-8760-cc47405f3f4f', '2025-03-30 12:29:21', '2025-03-30 12:29:30'),
+('9b9021f0-0d62-11f0-8760-cc47405f3f4f', 'Hardware Engineering', NULL, '2daf04e1-0d61-11f0-8760-cc47405f3f4f', '2025-03-30 12:29:21', '2025-03-30 15:32:36'),
+('9b908c1f-0d62-11f0-8760-cc47405f3f4f', 'Hardware Engineering', NULL, '9b9021f0-0d62-11f0-8760-cc47405f3f4f', '2025-03-30 12:29:21', '2025-03-30 12:29:48');
 
 -- down
 DROP TABLE `categories`;
